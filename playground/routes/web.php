@@ -18,7 +18,8 @@ Route::prefix('/users')
         Route::get('/edit', function () {
             return 'Edit User Page';
         })->name('edit');
-        Route::get('/show', [UserController::class, 'showUser'])->name('show');
+        Route::get('/show', [UserController::class, 'show'])->name('show');
 });
 
 //access using route('user.show')
+Route::get('/profile', [UserController::class, 'getProfile'])->name('show');
