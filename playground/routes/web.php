@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*** Route::get('/', function () {
     return view('welcome');
@@ -39,16 +40,6 @@ Route::prefix('/users')
         </ul>";
     })->name('profile');
     
-    Route::get('/profile2', function (Request $request) {
-        $name = $request->name ?? '';
-        $birthday = $request->bday ?? '';
-        $emailAddress = $request->email ?? '';
-
-        return "<h1>Users Page</h1>
-        <ul>
-            <li>Name: $name</li>
-            <li>Birthday: $birthday</li>
-            <li>Email: $emailAddress</li>
-        </ul>";
-    })->name('profile2');
+    Route::get('/profile2', [UserController::class, 'getProfile'])->name('profile2');
+    Route::get('/profile3', [UserController::class, 'show'])->name('profile3');
 });

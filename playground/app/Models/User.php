@@ -45,4 +45,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getData(){
+        return [
+            'name' => 'John Doe',
+            'email' => 'zVYtF@example.com'
+        ];
+    }
 }
