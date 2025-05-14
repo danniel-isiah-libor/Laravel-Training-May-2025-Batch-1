@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,12 +18,7 @@ Route::prefix('/users')
         Route::get('/edit', function () {
             return 'Edit User Page';
         })->name('edit');
-        Route::get('/show', function (Request $request) {
-            $name = $request->name;
-            $email = $request->email;
-            $birthdate = $request->birthdate;
-            return "Name: $name <br>Email: $email <br> Birthdate: $birthdate";
-        })->name('show');
+        Route::get('/show', [UserController::class, 'showUser'])->name('show');
 });
 
 //access using route('user.show')
