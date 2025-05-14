@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'birthdate',
     ];
 
     /**
@@ -43,6 +44,15 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+        ];
+    }
+
+    public function getUserData()
+    {
+        return [
+            'name' => $this->name,
+            'birthdate' => $this->birthdate,
+            'email' => $this->email,
         ];
     }
 }

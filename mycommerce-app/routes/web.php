@@ -16,9 +16,8 @@ Route::prefix('/users')->name('user.')->group(function () {
         Route::get('/edit', function () {
             return view('edit');
         })->name('edit');
-        Route::get('/show/{id?}', function ($id=null) {
-            return 'show'. $id;
-        })->name('show');
+        Route::get('/show/{id?}', [UserController::class, 'show'])->name('show');
+      
     });
     Route::get('/list', function ($id) {
         return 'user list';
