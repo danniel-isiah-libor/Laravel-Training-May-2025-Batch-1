@@ -1,7 +1,6 @@
 <?php
 
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,14 +8,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/submit', function (Request $request) {
-    $name = $request->query('name');
-    $email = $request->query('email');
-    $birthdate = $request->query('date');
-    $birthdate2 = Carbon::parse($birthdate)->format('F j, Y'); // or 'F j, Y'
-    return "<ul><li>Name: $name</li><li>Email: $email</li><li>Birthdate: $birthdate2</li><ul>";
-})->name('submit');
-
+Route::get('/submit',[UserController::class,'submit'])->name('submit');
+Route::get('/show',[UserController::class,'showData'])->name('show');
 
 
 
