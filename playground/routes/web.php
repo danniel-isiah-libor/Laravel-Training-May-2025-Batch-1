@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
 
@@ -10,3 +12,5 @@ Route::get('/', function () {
 Route::get('/list', function () {
     return ('User list');
 });
+
+Route::get('/profile', [UserController::class, 'showData']);
