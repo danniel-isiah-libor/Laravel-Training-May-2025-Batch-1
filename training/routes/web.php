@@ -7,12 +7,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/client/{id?}', function(Request $request, ?string $id = null) {
+Route::get('/client', function(Request $request) {
     $html = "<ul>";
         $html .= "<li>Name: {$request->name}</li>";
         $html .= "<li>Birth date: {$request->birthdate}</li>";
         $html .= "<li>Email: {$request->email}</li>";
-        $html .= "<li>ID: {$id}</li>";
     $html .= "</ul>";
 
     return $html;
