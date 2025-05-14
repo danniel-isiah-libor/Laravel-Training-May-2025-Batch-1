@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,15 +25,5 @@ Route::prefix('/users')->name('user.')->group(function () {
     })->name('user.list');
 });
 
-Route::get('/client', function (Request $request) {
-    $result = [
-        'name' => $request->query('name') ?? '',
-        'birthdate' => $request->query('birthdate') ?? '',
-        'email' => $request->query('email') ?? '',
-    ];
-
-    return collect($result)->map(function ($value, $key) {
-        return "{$key}: {$value}";
-    })->implode('<br>');
-})->name('client');
+Route::get('/profile', [UserController::class, 'getProfile'])->name('profile');
 
