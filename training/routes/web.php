@@ -8,4 +8,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/profile', [UserController::class, 'getProfile'])->name('profile');
+Route::get('/profile/{id}', [UserController::class, 'show']);
