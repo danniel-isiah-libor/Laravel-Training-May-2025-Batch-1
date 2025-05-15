@@ -43,3 +43,5 @@ Route::prefix('/users')
     Route::get('/profile2', [UserController::class, 'getProfile'])->name('profile2');
     Route::get('/profile3', [UserController::class, 'show'])->name('profile3');
 });
+
+Route::view('/register', 'register')->name('register');
