@@ -19,6 +19,10 @@
                     <x-forms.input-fields label="Password" name="password" type="password" />
                 </div>
 
+                @error('password')
+                    {{ $message }}
+                @enderror
+
                 <div>
                     <x-forms.buttons class="buttons" label="Sign in" />
                 </div>

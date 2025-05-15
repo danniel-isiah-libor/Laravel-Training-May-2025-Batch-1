@@ -44,4 +44,11 @@ class StoreRequest extends FormRequest
             ],
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_id' => 1 // Auth::user()->id
+        ]);
+    }
 }

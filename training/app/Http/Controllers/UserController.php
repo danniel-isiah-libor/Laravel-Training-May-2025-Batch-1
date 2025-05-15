@@ -14,14 +14,18 @@ class UserController extends Controller
     public function store(StoreRequest $request) {
         
         $form = $request->validated();
+
+        User::create($form);
+
+        return redirect()->route('login');
     }
 
     public function login(LoginRequest $request) {
         $form = $request->validated();
-
-        $user = new User();
-        $user->email = $form['email'];
+        
+        $user = User::where('email', $form['email'])->first();
 
         Auth::login($user);
+        return redirect()->route('work-experience.create');
     }
 }
