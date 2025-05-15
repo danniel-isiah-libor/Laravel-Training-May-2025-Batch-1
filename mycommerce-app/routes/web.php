@@ -25,4 +25,10 @@ Route::prefix('/users')->name('user.')->group(function () {
 });
 
 Route::get('/profile', [UserController::class, 'getProfile'])->name('profile');
+Route::view('/register', 'register')->name('register');
+Route::view('/login', 'login')->name('login');
+
+Route::post('/login', [UserController::class, 'login'])->name('login');
+
+Route::post('/register', [UserController::class, 'store'])->name('register.store');
 
