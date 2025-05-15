@@ -8,7 +8,7 @@ use App\Http\Controllers\CompanyController;
     return view('welcome');
 }); ***/
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->name('welcome');
 Route::fallback(function () {
     return '404 GOGOGOG';
 });

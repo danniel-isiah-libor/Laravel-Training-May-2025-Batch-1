@@ -44,16 +44,8 @@ class UserController extends Controller
 
     public function login(LoginRequest $request){
         $credentials = $request->validated();
-        if(Auth::attempt($credentials)){
-            $request->session()->regenerate();
-            return response()->json([
-                'message' => 'Login successful',
-                'user' => Auth::user(),
-            ]);
-        }
-
-        return response()->json([
-            'message' => 'Invalid email or password.'
-        ], 401);
+        $user = User::where('email', $credentials['email'])->first();
+        Auth::login($user);
+        return redirect()->route('welcome');
     }
 }
