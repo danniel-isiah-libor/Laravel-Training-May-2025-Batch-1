@@ -2,20 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CompanyController;
 
-Route::get('/userProfile', function(Request $request){
-  $name = $request->query('name');
-  $birthdate = $request->birthdate;
-  $email = $request->email;
+// Route::get('/', [UserController::class, 'getPRofile'])->name('userProfile');
+// Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/register/store', [UserController::class, 'store'])->name('register.store');
+Route::post('/login/store', [UserController::class, 'login'])->name('login');
 
-  return "
-    <ul>
-        <li>Name: $name </li>
-        <li>Birthdate: $birthdate</li>
-        <li>Email: $email</li>
-    </ul>
-  ";
-})->name('userProfile');
+Route::view('/register','register')->name('register');
+Route::view('/login','login')->name('login');
 
-
-
+Route::prefix('/company')->group(function() {
+    Route::view('/users', 'employee')->name('users');
+    Route::view('/display', 'employee-display')->name('employee-display');
+    Route::post('/register', [CompanyController::class, 'addEmployee'])->name('addEmployee');
+})->name('company');
