@@ -36,15 +36,24 @@ class UserController extends Controller
     }
 
     public function store(StoreRequest $request){
-        $request->validated();
-        dd('Passed!');
+        $form = $request->validated();
+        User::create($form);
+
+        return redirect()->route('login');
     }
 
     public function login(LoginRequest $request){
-        $form = $request->validated();
-        $user = new User;
-        $user->email = $form['email'];
-        Auth::login($user);
-        dd('Login!');
+        $credentials = $request->validated();
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+            return response()->json([
+                'message' => 'Login successful',
+                'user' => Auth::user(),
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Invalid email or password.'
+        ], 401);
     }
 }

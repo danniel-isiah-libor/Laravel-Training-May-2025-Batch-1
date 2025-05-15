@@ -25,11 +25,13 @@ class StoreRequest extends FormRequest
     {
         return [
             //'user_id' => ['required', 'integer', 'exists:users,id'],
+            'user_id' => ['required', 'integer'],
             'company_name' => ['required', 'string', 'max:75'],
             'start_date' => ['required', 'date', Rule::date()->beforeOrEqual('today') ],
             'end_date' => ['nullable', 'date', 'after:start_date'],
             'tenure' => ['required', 'numeric', 'between:0,100'],
             'role' => ['required', 'string', 'max:70'],
+            'location' => ['string', 'max:255'],
         ];
     }
 
@@ -47,7 +49,7 @@ class StoreRequest extends FormRequest
 
     protected function prepareForValidation(){
         $this->merge([
-            // 'user_id' => Auth::user()->id
+            'user_id' => 1
         ]);
     }
 }
