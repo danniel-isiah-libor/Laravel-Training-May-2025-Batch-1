@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\ProfileRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 
@@ -46,5 +49,21 @@ class UserController extends Controller
 
         dd('Passed!');
         // saving...
+    }
+
+    public function login(LoginRequest $request)
+    {
+        $form = $request->validated();
+        $user = new User;
+        $user->email = $form['email'];
+
+        Auth::login($user);
+        return redirect('/view-profile');
+    }
+
+    public function storeProfile(ProfileRequest $request)
+    {
+        $form = $request->validated();
+        return redirect('/profile');
     }
 }

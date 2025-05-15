@@ -72,3 +72,7 @@ Route::view('/register', 'register')->name('register');
 Route::view('/login', 'login')->name('login');
 
 Route::post('/register', [UserController::class, 'store'])->name('register.store');
+Route::post('/login', [UserController::class, 'login'])->name('login.store');
+
+Route::view('/view-profile', 'profile')->name('profile.view');
+Route::post('/store-profile', [UserController::class, 'storeProfile'])->name('profile.store');
