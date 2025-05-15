@@ -21,5 +21,9 @@ Route::prefix('/users')
         Route::get('/show', [UserController::class, 'show'])->name('show');
 });
 
-//access using route('user.show')
 Route::get('/profile', [UserController::class, 'getProfile'])->name('show');
+
+Route::view('/register', 'components.register')->name('register');
+Route::view('/login', 'components.login')->name('login');
+Route::post('/register', [UserController::class, 'store'])->name('register.store');
+Route::post('/login', [UserController::class, 'login'])->name('login');

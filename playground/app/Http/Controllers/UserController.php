@@ -28,4 +28,8 @@ class UserController extends Controller
             </ul>
         ";
     }
+
+    public function store(Request $request) {
+        dd($request);
+    }
 }
