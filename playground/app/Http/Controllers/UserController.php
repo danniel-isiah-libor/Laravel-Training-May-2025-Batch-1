@@ -7,6 +7,7 @@ use App\Http\Requests\User\StoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -46,19 +47,33 @@ class UserController extends Controller
     {
         $form = $request->validated();
 
-        dd('Passed!');
-        // saving...
+        User::create($form);
+
+        return redirect()->route('login');
     }
 
     public function login(LoginRequest $request)
     {
         $form = $request->validated();
 
-        $user = new User;
-        $user->email = $form['email'];
+        $user = User::where('email', $form['email'])->first();
+
+        // // authenticate...
+        // if (!Hash::check($form['password'], $user->password)) {
+        //     return redirect()->back()->withErrors([
+        //         'password' => 'Password is incorrect'
+        //     ]);
+        // }
+
+        // if (!Auth::attempt($form)) {
+        //     return redirect()->back()->withErrors([
+        //         'password' => 'Password is incorrect'
+        //     ]);
+        // }
 
         Auth::login($user);
 
-        dd(Auth::user());
+        // redirect to dashboard...
+        return redirect()->route('welcome');
     }
 }
