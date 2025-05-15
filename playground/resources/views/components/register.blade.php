@@ -1,1 +1,2 @@
-<h1>Register Component Page</h1>
+<h4>Register Component Page</h4>
+{{ $email }}

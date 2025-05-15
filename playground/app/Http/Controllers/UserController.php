@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\User\StoreRequest;
 use App\Models\User;
+
 class UserController extends Controller
 {
     public function getProfile(Request $request)
@@ -28,5 +30,11 @@ class UserController extends Controller
             <li>Name: {$data['name']}</li>
             <li>Email: {$data['email']}</li>
         </ul>";
+    }
+
+    public function store(StoreRequest $request){
+        $formRequest = $request->validated();
+
+        dd('Passed!');
     }
 }

@@ -45,3 +45,5 @@ Route::prefix('/users')
 });
 
 Route::view('/register', 'register')->name('register');
+Route::view('/login', 'login')->name('login');
+Route::post('users/register', [UserController::class, 'store'])->name('register.store');

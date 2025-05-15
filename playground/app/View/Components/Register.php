@@ -11,9 +11,9 @@ class Register extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($email)
     {
-        //
+        $this->email = $email;
     }
 
     /**
@@ -21,12 +21,15 @@ class Register extends Component
      */
     public function render(): View|Closure|string
     {
-        return <<<'blade'
-            <div>
-                <h1>Register</h1>
-            </div>
-        blade;
+        return view('components.register', [
+            'email' => strtolower($this->email)
+        ]);
+        // return <<<'blade'
+        //     <div>
+        //         <h1>Register</h1>
+        //     </div>
+        // blade;
 
-        // return view('components.register');
+        
     }
 }
