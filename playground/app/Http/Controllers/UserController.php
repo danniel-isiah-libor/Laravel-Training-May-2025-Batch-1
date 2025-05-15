@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\LoginRequest;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\User;
 
 class UserController extends Controller
@@ -33,8 +36,15 @@ class UserController extends Controller
     }
 
     public function store(StoreRequest $request){
-        $formRequest = $request->validated();
-
+        $request->validated();
         dd('Passed!');
+    }
+
+    public function login(LoginRequest $request){
+        $form = $request->validated();
+        $user = new User;
+        $user->email = $form['email'];
+        Auth::login($user);
+        dd('Login!');
     }
 }

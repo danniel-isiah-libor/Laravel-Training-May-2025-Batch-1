@@ -2,6 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CompanyController;
 
 /*** Route::get('/', function () {
     return view('welcome');
@@ -46,4 +47,8 @@ Route::prefix('/users')
 
 Route::view('/register', 'register')->name('register');
 Route::view('/login', 'login')->name('login');
-Route::post('users/register', [UserController::class, 'store'])->name('register.store');
+Route::post('/users/register', [UserController::class, 'store'])->name('register.store');
+Route::post('/users/login', [UserController::class, 'login'])->name('user.login');
+
+Route::view('/company', 'company')->name('company');
+Route::post('/company/register', [CompanyController::class, 'store'])->name('company.store');

@@ -29,7 +29,5 @@ class Register extends Component
         //         <h1>Register</h1>
         //     </div>
         // blade;
-
-        
     }
 }

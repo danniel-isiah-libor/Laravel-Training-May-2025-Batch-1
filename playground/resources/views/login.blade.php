@@ -6,9 +6,10 @@
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-6" action="#" method="POST">
+    <form class="space-y-6" action="{{ route('user.login') }}" method="POST">
+    @csrf
       <x-forms.field type="email" label="Email" name="email" placeholder="Email" id="email" />
-      <x-forms.field type="password" label="Password" name="email" placeholder="Password" id="password" />
+      <x-forms.field type="password" label="Password" name="password" placeholder="Password" id="password" />
       <x-forms.submit type="submit" value="Sign in" id="submit-action" />
     </form>
 

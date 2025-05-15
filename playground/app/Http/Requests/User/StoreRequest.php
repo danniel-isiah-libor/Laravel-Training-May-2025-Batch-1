@@ -39,8 +39,7 @@ class StoreRequest extends FormRequest
 
     public function message(){
         return [
-            'email.email' => 'Email is not valid please change',
-            'password.min' => 'Password must be at least 8 characters',
+            'email.email' => 'Email is not valid please change'
         ];
     }
 }
