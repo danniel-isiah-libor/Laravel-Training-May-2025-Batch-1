@@ -16,3 +16,5 @@ Route::get('/client', function(Request $request) {
 
     return $html;
 })->name('client');
+
+Route::view('/register', 'register')->name('register');
