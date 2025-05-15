@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkExperienceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -72,3 +73,18 @@ Route::view('/register', 'register')->name('register');
 Route::view('/login', 'login')->name('login');
 
 Route::post('/register', [UserController::class, 'store'])->name('register.store');
+Route::post('/login', [UserController::class, 'login'])->name('login.store');
+
+/**
+ *
+ * Company Name:
+ * Tenure:
+ * Role:
+ *
+ * Save
+ *
+ */
+Route::prefix('/work-experience')->name('work-experience.')->group(function () {
+    Route::view('/create', 'work-experience.create')->name('create');
+    Route::post('/store', [WorkExperienceController::class, 'store'])->name('store');
+});
