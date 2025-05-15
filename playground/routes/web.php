@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,9 +26,7 @@ Route::prefix('/users')
                 return 'Edit User Page';
             })->name('edit');
 
-            Route::get('/show/{id?}', function ($id = null) {
-                return 'Show User Page - ' . $id;
-            })->name('show');
+            Route::get('/show/{id?}', [UserController::class, 'show'])->name('show');
         });
 
         Route::get('/lists', function () {
@@ -57,18 +56,16 @@ Route::prefix('/users')
  * birthdate: 1990-01-01
  * email: john@mail.test
  */
-Route::get('/profile', function (Request $request) {
-    $name = $request->query('name');
-    $birthdate = $request->birthdate;
-    $email = $request->email;
+Route::get('/profile', [UserController::class, 'getProfile'])->name('profile');
 
-    return "
-        <script>alert('this is alert');</script>
+/**
+ * PascalCase
+ * camelCase
+ * snake_case
+ * kebab-case
+ */
 
-        <ul style='color: red;'>
-            <li>Name: $name</li>
-            <li>Birthdate: $birthdate</li>
-            <li>Email: $email</li>
-        </ul>
-    ";
-})->name('profile');
+// Route::get('/register', function () {
+//     return view('components.register');
+// });
+Route::view('/register', 'register')->name('register');
