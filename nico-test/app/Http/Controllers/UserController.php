@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
 use App\Models\User;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
@@ -42,5 +44,13 @@ class UserController extends Controller
     
         // return redirect()->route('login')
         //     ->with('success', 'Registration successful! Please login.');
+    }
+
+    public function login(LoginRequest $request){
+        $form = $request->validated();
+        $user = new User();
+        $user->email = $form['email'];
+        Auth::login($user->login($form));
+        dd(Auth::user());
     }
 }

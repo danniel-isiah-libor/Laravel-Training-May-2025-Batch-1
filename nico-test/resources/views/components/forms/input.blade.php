@@ -11,6 +11,6 @@
     {{$label}}
 </label>
 <input type="{{$type}}" id="{{$id}}" name="{{$name}}" placeholder="{{$placeholder}}"  class="{{$class}}"/>
-@error('{{$name}}')
+@error("{{$name}}")
 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
 @enderror

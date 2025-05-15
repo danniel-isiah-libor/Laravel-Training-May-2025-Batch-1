@@ -7,26 +7,29 @@
           <div class="text-center">
             <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
           </div>
-          <form class="mt-8 space-y-6" action="#" method="POST">
+          <form class="mt-8 space-y-6" action="{{route('login.store')}}" method="POST">
+            @csrf
             <div class="rounded-md shadow-sm space-y-4">
               <div>
                 <x-forms.input
-                  id="email"
-                  name="email"
-                  type="email"
+                  id="email" 
+                  name="email" 
+                  type="email" 
+                  label="Email Address" 
                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   placeholder="you@example.com"
-                ></x-forms.input>
+                />
               </div>
               <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+
                 <x-forms.input
-                  id="password"
-                  name="password"
-                  type="password"
+                  id="password" 
+                  name="password" 
+                  type="password" 
+                  label="Password"
                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   placeholder="••••••••"
-                ></x-forms.input>
+                />
               </div>
             </div>
             <div>
