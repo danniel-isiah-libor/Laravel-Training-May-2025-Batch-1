@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\StoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -36,5 +38,13 @@ class UserController extends Controller
                 <li>Email: {$data['email']}</li>
             </ul>
         ";
+    }
+
+    public function store(StoreRequest $request)
+    {
+        $form = $request->validated();
+
+        dd('Passed!');
+        // saving...
     }
 }

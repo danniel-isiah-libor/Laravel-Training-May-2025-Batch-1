@@ -8,5 +8,8 @@
 </head>
 <body>
     <h1>Register Component</h1>
+
+    {{ $email }}
+
 </body>
 </html>

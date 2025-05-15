@@ -69,3 +69,6 @@ Route::get('/profile', [UserController::class, 'getProfile'])->name('profile');
 //     return view('components.register');
 // });
 Route::view('/register', 'register')->name('register');
+Route::view('/login', 'login')->name('login');
+
+Route::post('/register', [UserController::class, 'store'])->name('register.store');

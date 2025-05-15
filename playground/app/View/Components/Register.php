@@ -8,12 +8,14 @@ use Illuminate\View\Component;
 
 class Register extends Component
 {
+    protected $email;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($email)
     {
-        //
+        $this->email = $email;
     }
 
     /**
@@ -21,6 +23,8 @@ class Register extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.register');
+        return view('components.register', [
+            'email' => strtolower($this->email)
+        ]);
     }
 }
