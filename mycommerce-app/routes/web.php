@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkExperienceController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,4 +32,8 @@ Route::view('/login', 'login')->name('login');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
 Route::post('/register', [UserController::class, 'store'])->name('register.store');
+
+Route::prefix('/profile')->name('profile.')->group(function () {
+    Route::post('/', [WorkExperienceController::class, 'store'])->name('profile.store');
+});
 

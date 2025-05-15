@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRequest;
+use App\Http\Requests\User\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class UserController extends Controller
@@ -16,9 +18,7 @@ class UserController extends Controller
             'email' => $request->query('email') ?? '',
         ];
     
-        return collect($result)->map(function ($value, $key) {
-            return "{$key}: {$value}";
-        })->implode('<br>');
+      return view('profile', $result);
     }
 
     public function show($id = null)
@@ -30,30 +30,21 @@ class UserController extends Controller
         return $data;
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $input = $request->all();
+        $input = $request->validated();
 
-        $user = User::where('email', $input['email'])->first();
+        $user = new User();
+        $user->email = $input['email'];
+        
+        Auth::login($user);
 
-        if (!$user) {
-            return redirect()->route('login');
-        }
-
-        if ($user->password !== $input['password']) {
-            return redirect()->route('login');
-        }
-
-        $request->session()->put('user', $user);
-
-
-
-        return view('dashboard', compact('input'));
+        return view('profile', ['email' => $user->email]);
     }
 
     public function store(StoreRequest $request)
     {
-        // $request->validate();
+        $request->validate();
        
 
         dd($request->all());
