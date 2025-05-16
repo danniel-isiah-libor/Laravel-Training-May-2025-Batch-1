@@ -46,12 +46,16 @@ class User extends Authenticatable
         ];
     }
 
-    public function getData(): array
+    public function getData()
     {
         return [
-            'name' => 'Joe Doe',
-            'email' => 'joedoe11@test.com',
-            'password' => 'hashed',
+            'name' => 'John Doe',
+            'email' => 'john@mail.test',
         ];
+    }
+
+
+    public function workExperiences(){
+        return $this->hasMany(workExperience::class);
     }
 }
