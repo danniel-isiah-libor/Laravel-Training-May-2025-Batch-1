@@ -13,11 +13,11 @@
                 @csrf
 
                 <div>
-                    <x-forms.input-fields label="Name" name="name" type="text" />
+                    <x-forms.input-fields label="Name" name="name" type="text" value="{{ old('name') }}" />
                 </div>
 
                 <div>
-                    <x-forms.input-fields label="Email address" name="email" type="email" />
+                    <x-forms.input-fields label="Email address" name="email" type="email" value="{{ old('email') }}" />
                     @error('email')
                         <p style="color: rgb(143, 2, 2)">{{ $message }}</p>
                     @enderror

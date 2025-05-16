@@ -7,6 +7,7 @@ use App\Http\Requests\User\StoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -27,5 +28,11 @@ class UserController extends Controller
 
         Auth::login($user);
         return redirect()->route('work-experience.create');
+    }
+
+    public function getProfile() {
+        $profile = DB::select('select * from profiles where id = ?', [1]);
+
+        dd($profile);
     }
 }

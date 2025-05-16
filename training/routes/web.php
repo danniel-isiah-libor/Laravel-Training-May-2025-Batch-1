@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkExperienceController;
+use App\Models\WorkExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,11 @@ Route::post('/login', [UserController::class, 'login'])->name('login.store');
 Route::prefix('/work-experience')->name('work-experience.')->group( function() {
     Route::view('/create', 'workExperience')->name('create');
     Route::post('/store', [WorkExperienceController::class, 'store'])->name('store');
+    Route::get('/show', [WorkExperienceController::class, 'show'])->name('show');
+    Route::get('/update/{id?}', [WorkExperienceController::class, 'update'])->name('update');
+    Route::put('/update_record/{id?}', [WorkExperienceController::class, 'update_record'])->name('update_record');
+    Route::get('/delete/{id?}', [WorkExperienceController::class, 'delete'])->name('delete');
+    Route::delete('/delete_record/{id?}', [WorkExperienceController::class, 'delete_record'])->name('delete_record');
 });
+
+Route::get('/profile', [UserController::class, 'getProfile'])->name('profile');
