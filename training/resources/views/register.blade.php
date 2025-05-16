@@ -12,20 +12,26 @@
                 <div class="mb-3">
                     <x-forms.fields label="Name" name="name" placeholder="Name"/>
                 </div>
+                @error('name')
+                    {{ $message }}
+                @enderror
 
                 <div class="mb-3">
                     <x-forms.fields label="Email" name="email" placeholder="Email"/>
                 </div>
+                @error('email')
+                    {{ $message }}
+                @enderror
 
                 <div class="mb-3">
                     <x-forms.fields label="Password" name="password" type="password" placeholder="Password"/>
-                    @error('password')
-                        {{ $message }}
-                    @enderror
                 </div>
+                @error('password')
+                    {{ $message }}
+                @enderror
 
                 <div class="mb-5">
-                    <x-forms.fields label="Confirm Password" type="password" name="password" placeholder="Confirm Password"/>
+                    <x-forms.fields label="Confirm Password" type="password" name="password_confirmation" placeholder="Confirm Password"/>
                 </div>
 
                 <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>

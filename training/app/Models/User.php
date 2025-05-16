@@ -47,9 +47,6 @@ class User extends Authenticatable
     }
 
     public function getData($id) {
-        return [
-            'name' => 'john',
-            'email' => 'asdas@gmail.com'
-        ];
+
     }
 }

@@ -37,14 +37,21 @@ class StoreRequest extends FormRequest
                 'required',
                 'string',
                 'confirmed',
-                Password::min(8)
-                ->max(12)
-                ->symbols()
-                ->mixedCase()
-                ->numbers()
-                ->letters()
-                ->uncompromised()
+                // Password::min(8)
+                // ->max(12)
+                // ->symbols()
+                // ->mixedCase()
+                // ->numbers()
+                // ->letters()
+                // ->uncompromised()
             ]
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.email' => 'This must be a valid email address',
         ];
     }
 }
