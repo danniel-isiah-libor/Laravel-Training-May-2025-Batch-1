@@ -17,7 +17,7 @@ class UsersProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::inRandomOrder()->value('id') ?? User::factory(),
             'birthdate' => fake()->date(),
             'address' => fake()->address(),
             'phone' => fake()->phoneNumber(),

@@ -31,11 +31,33 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function show(){
-        $collection = WorkExperience::get();
+    public function show(Request $request){
+        $search = $request->query('search');
+
+        $query = WorkExperience::with(['user' => function($query) {
+            $query->select('id', 'name')
+            ->with(['profile' => function ($q) {
+                  $q->select('id', 'user_id', 'birthdate', 'gender');
+              }]);
+        }]);
+
+        if(!empty($search)){
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                ->orWhereHas('profile', function ($q) use ($search) {
+                    $q->where('gender', 'like', '%' . $search . '%');
+                });
+            })->orWhere('role', 'like', '%' . $search . '%')
+            ->orWhere('company_name', 'like', '%' . $search . '%')
+            ->orWhere('location', 'like', '%' . $search . '%');
+        }
+        
+        $collection = $query->paginate(5)->appends($search ? ['search' => $search] : []);
+
         return view('workexperience', [
             'collection' => $collection,
-            'count' => $collection->count()
+            'count' => $collection->total(),
+            'search' => $search
         ]);
     }
 

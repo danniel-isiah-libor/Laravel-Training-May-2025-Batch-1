@@ -16,11 +16,13 @@ class WorkExperienceFactory extends Factory
      */
     public function definition(): array
     {
+        $start = fake()->dateTimeBetween('-5 years', 'now');
+        $end = fake()->dateTimeBetween($start, '+2 years');
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::inRandomOrder()->value('id') ?? User::factory(),
             'company_name' => fake()->company(),
-            'start_date' => fake()->date(),
-            'end_date' => fake()->date(),
+            'start_date' => $start->format('Y-m-d'),
+            'end_date' => $end->format('Y-m-d'),
             'tenure' => fake()->numberBetween(1, 10),
             'role' => fake()->jobTitle(),
             'location' => fake()->city(),

@@ -12,12 +12,25 @@
                     <span class="block sm:inline">{{ session('success') }}</span>
                 </div>
             @endif
+            <form class="space-y-6" action="{{ route('workexperience.show') }}" method="GET">
+                <div class="grid grid-cols-1 md:grid-cols-[80%_10%_10%] gap-4 mb-3">
+                    <x-forms.field type="text" label="Search" name="search" placeholder="Search" id="search" />
+                    <x-forms.submit type="submit" value="Search" id="submit-action" />
+                    <div class="flex items-end w-full">
+                        <a href="{{ route('workexperience.show') }}" class="flex items-end">
+                            <x-forms.submit type="button" value="Reset Filter" id="reset-action" color="red" />
+                        </a>
+                    </div>
+                </div>
+            </form>
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200 border border-gray-300 rounded-lg text-sm">
                 <thead class="bg-gray-100">
                     <tr>
+                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Author</th>
                     <th class="px-4 py-2 text-left font-semibold text-gray-700">Company Name</th>
                     <th class="px-4 py-2 text-left font-semibold text-gray-700">Address</th>
+                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Gender</th>
                     <th class="px-4 py-2 text-left font-semibold text-gray-700">Start Date</th>
                     <th class="px-4 py-2 text-left font-semibold text-gray-700">End Date</th>
                     <th class="px-4 py-2 text-left font-semibold text-gray-700">Tenure</th>
@@ -29,10 +42,12 @@
                     @if($count > 0)
                     @foreach ($collection as $item)
                     <tr>
+                    <td class="px-4 py-2">{{$item->user->name}}</td>
                     <td class="px-4 py-2">{{$item->company_name}}</td>
                     <td class="px-4 py-2">{{$item->location}}</td>
-                    <td class="px-4 py-2">{{$item->start_date}}</td>
-                    <td class="px-4 py-2">{{$item->end_date}}</td>
+                    <td class="px-4 py-2">{{$item->user->profile->gender ?? '-'}}</td>
+                    <td class="px-4 py-2">{{$item->start_date->format('F d, Y')}}</td>
+                    <td class="px-4 py-2">{{$item->end_date->format('F d, Y')}}</td>
                     <td class="px-4 py-2">{{$item->tenure}}</td>
                     <td class="px-4 py-2">{{$item->role}}</td>
                     <td class="px-4 py-2">
@@ -53,6 +68,9 @@
                     
                 </tbody>
                 </table>
+            </div>
+            <div class="mt-4">
+                {{ $collection->links() }}
             </div>
         </div>
         

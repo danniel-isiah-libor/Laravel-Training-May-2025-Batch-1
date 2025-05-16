@@ -52,4 +52,14 @@ class User extends Authenticatable
             'email' => 'zVYtF@example.com'
         ];
     }
+
+    public function workExperiences(){
+        // $this->hasOne(WorkExperience::class);
+        return $this->hasMany(WorkExperience::class);
+    }
+
+    public function profile(){
+        // $this->hasOne(UsersProfile::class);
+        return $this->hasOne(UsersProfile::class);
+    }
 }

@@ -15,6 +15,7 @@
             type="{{$type}}"
             name="{{$name}}"
             id="{{$id}}" {{ $required ? 'required' : '' }}
+            placeholder="{{$placeholder}}"
             value="{{ $value }}" />
         @error($name) <div class="text-sm text-red-600">{{ $message }}</div> @enderror
     </div>
