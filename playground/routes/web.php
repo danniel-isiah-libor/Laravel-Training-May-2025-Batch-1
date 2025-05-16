@@ -52,3 +52,10 @@ Route::post('/users/login', [UserController::class, 'login'])->name('user.login'
 
 Route::view('/company', 'company')->name('company');
 Route::post('/company/register', [CompanyController::class, 'store'])->name('company.store');
+Route::put('/company/udpdate/{id?}', [CompanyController::class, 'update'])->name('company.update');
+
+Route::get('/workexperience', [CompanyController::class, 'show'])->name('workexperience.show');
+Route::get('/workexperience/edit/{id?}', [CompanyController::class, 'edit'])->name('workexperience.edit');
+Route::get('/workexperience/delete/{id?}', [CompanyController::class, 'delete'])->name('workexperience.delete');
+Route::put('/workexperience/{id?}', [CompanyController::class, 'update'])->name('workexperience.update');
+Route::delete('/workexperience/{id?}', [CompanyController::class, 'destroy'])->name('workexperience.destroy');

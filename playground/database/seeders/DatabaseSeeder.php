@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             WorkExperienceSeeder::class,
+            UsersProfileSeeder::class
         ]);
 
         // User::factory(10)->create();

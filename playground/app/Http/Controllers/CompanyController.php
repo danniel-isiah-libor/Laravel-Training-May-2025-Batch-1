@@ -30,4 +30,38 @@ class CompanyController extends Controller
             'location' => $request->location
         ]);
     }
+
+    public function show(){
+        $collection = WorkExperience::get();
+        return view('workexperience', [
+            'collection' => $collection,
+            'count' => $collection->count()
+        ]);
+    }
+
+    public function edit($id){
+        $result = WorkExperience::where('id', $id)->first();
+        return view('components.edit-workexperience', [
+            'result' => $result,
+        ]);
+    }
+
+    public function delete($id){
+        $result = WorkExperience::where('id', $id)->first();
+        return view('components.delete-workexperience', [
+            'result' => $result,
+        ]);
+    }
+
+    public function update($id, StoreRequest $request){
+        $form = $request->validated();
+        WorkExperience::where('id', $id)->update($form);
+        return redirect()->route('workexperience.show')->with('success', 'Work Experience has been updated successfully');
+    }
+
+    public function destroy($id){
+        $experience = WorkExperience::findOrFail($id);
+        $experience->delete();
+        return redirect()->route('workexperience.show')->with('success', 'Work Experience has been deleted successfully');
+    }
 }

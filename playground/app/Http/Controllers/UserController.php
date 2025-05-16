@@ -6,23 +6,25 @@ use Illuminate\Http\Request;
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
+use App\Models\UsersProfile;
 
 class UserController extends Controller
 {
     public function getProfile(Request $request)
     {
-        $name = $request->name ?? '';
-        $birthday = $request->bday ?? '';
-        $emailAddress = $request->email ?? '';
+        //$response = DB::select('select * from users_profile where id = ?', [1]);
+        //$response = DB::table('users_profile')->where('id', 1)->first();
 
-        return "<h1>Users Page</h1>
-        <ul>
-            <li>Name: $name</li>
-            <li>Birthday: $birthday</li>
-            <li>Email: $emailAddress</li>
-        </ul>";
+        $response = UsersProfile::where('gender', 'male')
+        ->cursor();
+        // ->each(function ($user) {
+        //     dd($user);
+        // });
+
+       dd($response->toArray());
     }
 
     public function show($id=null){
