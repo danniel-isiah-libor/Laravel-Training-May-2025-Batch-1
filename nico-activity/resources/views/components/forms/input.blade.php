@@ -1,6 +1,6 @@
 @props([
     'type' => 'text',
-    'labelClass' => 'block mb-2 text-sm font-medium text-gray-900 dark:text-white',
+    'labelClass' => 'text-2xl font-bold text-gray-800 mb-6 text-center',
     'name',
     'label',
     'placeholder',

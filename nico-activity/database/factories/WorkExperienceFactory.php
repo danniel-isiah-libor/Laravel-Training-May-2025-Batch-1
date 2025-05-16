@@ -18,7 +18,7 @@ class WorkExperienceFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::inRandomOrder()->first()->id ?? User::factory(),
             'company' => fake()->company(),
             'position' => fake()->jobTitle(),
             'start_date' => fake()->date(),

@@ -2,21 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\WorkStoreRequest;
+use App\Models\User;
+use App\Models\UserDetail;
 use App\Models\WorkExperience;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function login(LoginRequest $request){
-        $credentials = $request->validated();
 
-        if ($credentials) {
-            $request->session()->regenerate();
-            return redirect()->route('dashboard.index');
-        }
-        return back()->with('error', 'Invalid credentials');
+    // public function getProfile(Request $request){
+    //     $result = UserDetail::where('user_id', $request->user()->id)->first();
+
+    // }
+
+    public function login(LoginRequest $request){
+        $form = $request->validated();
+        $user = User::where('email', $form['email'])->first();
+        Auth::login($user);
+        return redirect()->route('welcome');
+    }
+
+    public function show(){
+        
     }
 
     public function store(WorkStoreRequest $request){
