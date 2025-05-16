@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\WorkExperience\StoreRequest;
+use App\Http\Requests\WorkExperience\UpdateRequest;
 use App\Models\WorkExperience;
 use Illuminate\Http\Request;
 
@@ -59,5 +60,24 @@ class WorkExperienceController extends Controller
         return view('work-experience.show', [
             'form' => $form
         ]);
+    }
+
+    public function edit(WorkExperience $id)
+    {
+        // $model = WorkExperience::where('id', $id)->first();
+        // $model = WorkExperience::findOrFail($id);
+
+        return view('work-experience.edit', [
+            'model' => $id
+        ]);
+    }
+
+    public function update(UpdateRequest $request, WorkExperience $model)
+    {
+        $form = $request->validated();
+
+        $model->update($form);
+
+        return redirect()->route('work-experience.edit', ['id' => $model->id]);
     }
 }

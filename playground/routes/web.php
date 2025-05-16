@@ -88,6 +88,13 @@ Route::prefix('/work-experience')->name('work-experience.')->group(function () {
     Route::view('/create', 'work-experience.create')->name('create');
     Route::post('/store', [WorkExperienceController::class, 'store'])->name('store');
 
+    Route::get('/edit/{id}', [WorkExperienceController::class, 'edit'])->name('edit');
+    Route::put('/update/{model}', [WorkExperienceController::class, 'update'])->name('update');
+
+    Route::delete('/delete/{id}', [WorkExperienceController::class, 'destroy'])->name('delete');
+
+    Route::get('/show/{id}', [WorkExperienceController::class, 'show'])->name('show');
+
     /**
      * update - display form
      * update - saving...
