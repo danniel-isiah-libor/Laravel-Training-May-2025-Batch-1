@@ -35,5 +35,8 @@ Route::post('/register', [UserController::class, 'store'])->name('register.store
 
 Route::prefix('/profile')->name('profile.')->group(function () {
     Route::post('/', [WorkExperienceController::class, 'store'])->name('profile.store');
+    Route::get('/', [WorkExperienceController::class, 'show'])->name('profile.show');
+    Route::put('/', [WorkExperienceController::class, 'update'])->name('profile.update');
+    Route::delete('/', [WorkExperienceController::class, 'destroy'])->name('profile.destroy');
 });
 

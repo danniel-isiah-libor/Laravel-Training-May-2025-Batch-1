@@ -45,8 +45,5 @@ class UserController extends Controller
     public function store(StoreRequest $request)
     {
         $request->validate();
-       
-
-        dd($request->all());
     }
 }
