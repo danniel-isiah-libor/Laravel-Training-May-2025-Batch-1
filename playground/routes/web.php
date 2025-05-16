@@ -87,4 +87,16 @@ Route::post('/login', [UserController::class, 'login'])->name('login.store');
 Route::prefix('/work-experience')->name('work-experience.')->group(function () {
     Route::view('/create', 'work-experience.create')->name('create');
     Route::post('/store', [WorkExperienceController::class, 'store'])->name('store');
+
+    /**
+     * update - display form
+     * update - saving...
+     * where()->update()
+     *
+     * delete - to controller
+     * delete()
+     *
+     * show - from controller
+     * first/get()
+     */
 });

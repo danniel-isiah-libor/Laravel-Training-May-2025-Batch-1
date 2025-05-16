@@ -38,4 +38,10 @@
         </p>
     </div>
     </div>
+
+    <?php
+        $content = "<h1>hello world</h1>";
+    ?>
+
+    {!! $content !!}
 </x-layout>

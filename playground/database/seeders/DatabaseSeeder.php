@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Profile;
 use App\Models\User;
 use App\Models\WorkExperience;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             WorkExperienceSeeder::class,
-            // Add other seeders here
+            ProfileSeeder::class,
         ]);
 
         /**
