@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkExperienceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -76,3 +77,15 @@ Route::post('/login', [UserController::class, 'login'])->name('login.store');
 
 Route::view('/view-profile', 'profile')->name('profile.view');
 Route::post('/store-profile', [UserController::class, 'storeProfile'])->name('profile.store');
+
+Route::prefix('/work-experience')->name('work-experience.')->group(function () {
+    Route::view('/view', 'components.work-experience')->name('view');
+    Route::get('/show', [WorkExperienceController::class, 'show'])->name('show');
+    Route::put('/update', [WorkExperienceController::class, 'update'])->name('update');
+    Route::delete('/delete', [WorkExperienceController::class, 'destroy'])->name('delete');
+});
+
+//update - display form
+//update -saving
+//delete - to controller
+//show - from controller

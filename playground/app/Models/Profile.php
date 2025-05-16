@@ -5,14 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WorkExperience extends Model
+class Profile extends Model
 {
     use HasFactory;
-
-   public $fillable = [
-        'company_name',
-        'start_date',
-        'end_date',
-        'role',
-    ];
+    //
 }

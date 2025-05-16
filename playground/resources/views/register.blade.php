@@ -20,11 +20,11 @@
             </div>
 
             <div>
-                <x-forms.field label="Password" type="text" name="password"/>
+                <x-forms.field label="Password" type="password" name="password"/>
             </div>
 
             <div>
-                <x-forms.field label="Password Confirmation" type="text" name="password_confirmation"/>
+                <x-forms.field label="Password Confirmation" type="password" name="password_confirmation"/>
             </div>
 
             <div>

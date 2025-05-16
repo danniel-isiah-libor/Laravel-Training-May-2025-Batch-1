@@ -37,16 +37,14 @@ class StoreRequest extends FormRequest
             'password' => [
                 'required',
                 'string',
-                // 'min:8',
-                // 'max:12',
                 'confirmed',
-                // Password::min(8)
-                //     ->max(12)
-                //     ->mixedCase()
-                //     ->symbols()
-                //     ->numbers()
-                //     ->letters()
-                //     ->uncompromised()
+                Password::min(8)
+                    ->max(12)
+                    ->mixedCase()
+                    ->symbols()
+                    ->numbers()
+                    ->letters()
+                    ->uncompromised()
             ],
         ];
     }

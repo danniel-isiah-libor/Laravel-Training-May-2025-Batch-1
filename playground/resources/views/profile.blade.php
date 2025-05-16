@@ -9,7 +9,7 @@
         <form class="space-y-6" action="{{ route('profile.store') }}" method="POST">
             @csrf
         <div>
-            <x-forms.field label="Company" name="company" />
+            <x-forms.field label="Company" name="company_name" />
         </div>
 
         <div>
