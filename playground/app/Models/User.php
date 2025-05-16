@@ -53,4 +53,22 @@ class User extends Authenticatable
             'email' => 'john@mail.test',
         ];
     }
+
+    public function workExperiences()
+    {
+        return $this->hasMany(WorkExperience::class);
+
+        // $this->hasOne()
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function scopeFilter($query, $search)
+    {
+        return $query->where('name', 'like', "%{$search}%")
+            ->orWhere('email', 'like', "%{$search}%");
+    }
 }

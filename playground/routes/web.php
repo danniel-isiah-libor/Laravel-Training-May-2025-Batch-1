@@ -95,6 +95,8 @@ Route::prefix('/work-experience')->name('work-experience.')->group(function () {
 
     Route::get('/show/{id}', [WorkExperienceController::class, 'show'])->name('show');
 
+    Route::get('/lists', [WorkExperienceController::class, 'getList'])->name('list');
+
     /**
      * update - display form
      * update - saving...

@@ -12,11 +12,11 @@
             @csrf
 
             <div>
-                <x-forms.field label="Name" name="name"/>
+                <x-forms.field label="Name" name="name" value="{{ old('name') }}"/>
             </div>
 
             <div>
-                <x-forms.field label="Email" type="text" name="email"/>
+                <x-forms.field label="Email" type="text" name="email" value="{{ old('email') }}"/>
             </div>
 
             <div>
